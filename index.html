@@ -220,6 +220,7 @@
 
 
     function postComment(name, date, comment) {
+      localStorage.clear();
       request.open("POST", 'https://api.mocki.io/v1/7abce450', true);
       request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {

@@ -184,7 +184,7 @@
     var flag = true;
     var newLength = 0;
     (function () {
-      request.open('GET', 'https://api.mocki.io/v1/7abce450', true)
+      request.open('GET', 'https://api.npoint.io/138f8ab3884352fe5f95', true)
       request.onload = function () {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
@@ -221,7 +221,7 @@
 
     function postComment(name, date, comment) {
       localStorage.clear();
-      request.open("POST", 'https://api.mocki.io/v1/7abce450', true);
+      request.open("POST", 'https://api.npoint.io/138f8ab3884352fe5f95', true);
       request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
           var json = JSON.parse(request.responseText);
@@ -240,7 +240,7 @@
         if (pastComments.comments[i].code != index) afterDelete.push(pastComments.comments[i]);
       }
       pastComments.comments = afterDelete;
-      request.open("POST", 'https://api.mocki.io/v1/7abce450', true);
+      request.open("POST", 'https://api.npoint.io/138f8ab3884352fe5f95', true);
       request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
           var json = JSON.parse(request.responseText);

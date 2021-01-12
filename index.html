@@ -5,7 +5,9 @@
 <head>
   <title>Comments</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
   <!-- CSS -->
   <style>
     body {
@@ -220,7 +222,7 @@
 
 
     function postComment(name, date, comment) {
-      localStorage.clear();
+    
       request.open("POST", 'https://api.npoint.io/138f8ab3884352fe5f95', true);
       request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {

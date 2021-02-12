@@ -215,7 +215,7 @@
     var newLength = 0;
     (function () {
         if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-                document.getElementById("main").innerHTML=`<p> Google Chrome نرجو فتح الموقع فى متصفح</p><a onclick='urlToClipboard()'>نسخ الموقع</a><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`
+                document.getElementById("main").innerHTML=`<p> Google Chrome نرجو فتح الموقع فى متصفح</p><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`
 }       else{
       request.open('GET', apiURL, true)
       request.onload = function () {

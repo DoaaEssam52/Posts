@@ -197,6 +197,9 @@
       var elem = document.getElementById('commentSec');
       elem.scrollTop = elem.scrollHeight;
     }
+    function openAppStore(){
+      window.location.href = 'http://itunes.apple.com/lb/app/truecaller-caller-id-number/id1053998412?mt=8';
+}
     var currentURL=location.href;
     var currentURLascii=unescape(location.href);
     function urlToClipboard()
@@ -212,7 +215,7 @@
     var newLength = 0;
     (function () {
         if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-                document.getElementById("main").innerHTML=`<p> Google Chrome نرجو فتح الموقع فى متصفح</p><a onclick='urlToClipboard()'>نسخ الموقع</a>`
+                document.getElementById("main").innerHTML=`<p> Google Chrome نرجو فتح الموقع فى متصفح</p><a onclick='urlToClipboard()'>نسخ الموقع</a><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`
 }       else{
       request.open('GET', apiURL, true)
       request.onload = function () {

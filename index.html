@@ -216,8 +216,34 @@
 	 if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
 	 	 if(!/CriOS/i.test(navigator.userAgent)){
       document.getElementById("main").innerHTML=`<p>Preferably use Google Chrome to work well</p><a class="copy" onClick="copyToClipboard()">لنسخ الرابط</a><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`;
-	 }
-	 }   
+   }
+   else{
+      request.open('GET', apiURL, true)
+      request.onload = function () {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+          pastComments = data;
+          commentsLenght = Object.keys(pastComments.comments).length;
+          // flag.val = true;
+          if (flag == true) {
+            displayComments();
+            scrollDown();
+            flag = false;
+          }
+          if (commentsLenght == newLength + 1) {
+            displayComments();
+            scrollDown();
+          }
+          newLength = commentsLenght;
+
+        } else {
+          console.log('error')
+        }
+      }
+   }   
+  }
 	else{
       request.open('GET', apiURL, true)
       request.onload = function () {

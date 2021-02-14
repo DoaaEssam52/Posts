@@ -172,7 +172,11 @@
     var request = new XMLHttpRequest()
     var pastComments;
     var commentsLenght;
-
+navigator.clipboard.writeText("helloo").then(function() {
+  /* clipboard successfully set */
+}, function() {
+  /* clipboard write failed */
+});
     function clearInput() {
       //Reset comment textarea
       document.getElementById("userComment").value = "";

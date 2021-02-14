@@ -93,6 +93,10 @@
       margin-bottom: 10px;
       margin-left: auto;
     }
+	.copy{
+	display:block;
+	margin-bottom:18px;
+	}
   </style>
   <!-- CSS -->
 </head>
@@ -159,7 +163,7 @@
     var codes = [1, 2, 3];
 
     var apiURL = 'https://api.npoint.io/138f8ab3884352fe5f95';
-
+	var websiteURL='https://wtsaa.com/';
     // Shows edited special code
     function codeChange(code) {
       return code * 24 - 5;
@@ -172,11 +176,6 @@
     var request = new XMLHttpRequest()
     var pastComments;
     var commentsLenght;
-navigator.clipboard.writeText("helloo").then(function() {
-  /* clipboard successfully set */
-}, function() {
-  /* clipboard write failed */
-});
     function clearInput() {
       //Reset comment textarea
       document.getElementById("userComment").value = "";
@@ -206,21 +205,20 @@ navigator.clipboard.writeText("helloo").then(function() {
 }
     var currentURL=location.href;
     var currentURLascii=unescape(location.href);
-    function urlToClipboard()
+    function copyToClipboard()
     {
-        const el = document.createElement('textarea');
-        el.value = currentURLascii;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
+       navigator.clipboard.writeText(websiteURL).then(function() {
+},);
     }
     var flag = true;
     var newLength = 0;
     (function () {
-        if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-                document.getElementById("main").innerHTML=`<p> Google Chrome نرجو فتح الموقع فى متصفح</p><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`
-}       else{
+	 if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+	 	 if(!/CriOS/i.test(navigator.userAgent)){
+      document.getElementById("main").innerHTML=`<p>Preferably use Google Chrome to work well</p><a class="copy" onClick="copyToClipboard()">لنسخ الرابط</a><button onClick="openAppStore()">يرجى تحميل جوجل كروم</button>`;
+	 }
+	 }   
+	else{
       request.open('GET', apiURL, true)
       request.onload = function () {
         // Begin accessing JSON data here

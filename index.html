@@ -102,7 +102,9 @@
       font-size: 20px;
     }
 
-
+#signWarning{
+  display: none;
+}
     #userLink {
       display: block !important;
       margin-bottom: 10px;
@@ -115,7 +117,7 @@
       width: 200px !important;
     }
 
-    .signfirst {
+    #signfirst {
       font-weight: bold;
       color: rgb(48, 48, 82);
       background-color: rgb(241, 241, 163);
@@ -199,6 +201,7 @@
 </head>
 
 <body>
+  <div id="signfirst">To comment sign in first</div>
   <section id="main">
     <!-- Sign in form -->
     <section id="form">
@@ -209,7 +212,6 @@
         <br />
         <button class="btn btn-hvr" onclick="check()"> <span>Sign In</span></button>
       </div>
-      <div class="signfirst">To comment sign in first</div>
       <div id="signButton">
         <button class="btn btn-hvr" onclick="showForm()"><span>Sign In</span></button>
       </div>
@@ -402,6 +404,7 @@ document.body.removeChild(dummy);
         const isCode = codes.find((e) => e == code);
         if (isCode != undefined) {
           document.getElementById("form").style.display = "none";
+          document.getElementById('signfirst').style.display = "none";
           document.getElementById("loggedInUser").style.display = "block";
           displayComments();
           scrollDown();

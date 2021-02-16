@@ -212,11 +212,10 @@
         <br />
         <button class="btn btn-hvr" onclick="check()"> <span>Sign In</span></button>
       </div>
+      <p id="signWarning"></p>
       <div id="signButton">
         <button class="btn btn-hvr" onclick="showForm()"><span>Sign In</span></button>
       </div>
-      <p id="signWarning"></p>
-
     </section>
     <!--زرار نسخ تجريبي-->
     <!-- <button onClick="copyToClipboard()">نسخ تجريبي رابط الموقع</button> -->
@@ -417,9 +416,11 @@ document.body.removeChild(dummy);
               `;
           }
         } else {
+          document.getElementById("signWarning").style.display = "block";
           document.getElementById("signWarning").innerHTML = "try another code";
         }
       } else {
+        document.getElementById("signWarning").style.display = "block";
         document.getElementById("signWarning").innerHTML = "enter all values";
       }
     }

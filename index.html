@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +11,13 @@
     body {
       text-align: right;
     }
-    .d-flex{
+
+    .d-flex {
       display: flex;
-      justify-content:flex-end !important;
+      justify-content: flex-end !important;
       align-items: center;
     }
+
     .commentsContainer {
       /*Change all comments container hight*/
       height: 300px;
@@ -23,11 +26,14 @@
       margin: 10px 0px 10px 0px;
       border-radius: 5px;
     }
-    textarea,#userLink{
+
+    textarea,
+    #userLink {
       text-align: right;
       border: 1px #ccc solid;
       border-radius: 5px;
     }
+
     /*Change single comment container width and height*/
     #userComment {
       width: 60%;
@@ -46,9 +52,11 @@
       background-color: rgb(252, 255, 254);
       /* background-color: rgb(237, 243, 242); */
     }
-    .comment p{
+
+    .comment p {
       color: gray;
     }
+
     .datetime {
       color: grey;
       margin-right: 10px;
@@ -74,11 +82,13 @@
         margin: auto;
         width: 85%;
       }
+
       #scrollSec {
-      position: absolute;
-      bottom: 15px;
-      left: 40px;
-    }
+        position: absolute;
+        bottom: 15px;
+        left: 40px;
+      }
+
       /* .comment {
         margin: 10px;
         padding: 0px;
@@ -87,18 +97,21 @@
       .commentsContainer {
         /* width: 85%; */
         margin: auto;
-        padding:0px;
+        padding: 0px;
         font-size: 15px;
       }
     }
-#main{
-  margin: 10px;
-}
-    @media screen and(max-width: 400px){
-      #main {
-      margin: 10px 0 !important;
+
+    #main {
+      margin: 10px;
     }
+
+    @media screen and(max-width: 400px) {
+      #main {
+        margin: 10px 0 !important;
       }
+    }
+
     #addSec,
     #deleteSec,
     #search {
@@ -112,9 +125,10 @@
       font-size: 20px;
     }
 
-#signWarning{
-  display: none;
-}
+    #signWarning {
+      display: none;
+    }
+
     #userLink {
       display: block !important;
       margin-bottom: 10px;
@@ -122,18 +136,23 @@
       width: 60%;
       margin-left: auto;
     }
-    a{
+
+    a {
       color: #5394f7;
     }
+
     .btnSpecial {
       width: 200px !important;
     }
-.signin{
-  background-color: rgb(101, 216, 101) !important;
-}
-.clear{
-  background-color: rgb(182, 75, 75) !important;
-}
+
+    .signin {
+      background-color: rgb(101, 216, 101) !important;
+    }
+
+    .clear {
+      background-color: rgb(182, 75, 75) !important;
+    }
+
     #signfirst {
       font-weight: bold;
       color: rgb(48, 48, 82);
@@ -204,7 +223,7 @@
       padding: 5px;
     }
 
-    #comments {
+    #commentBox {
       position: relative;
     }
 
@@ -247,22 +266,24 @@
         <!-- delete comments by user code -->
       </div>
 
-      <div class="commentsContainer" id="commentSec">
-        <!-- comments added by users -->
+      <div id="commentBox">
+        <div class="commentsContainer" id="commentSec">
+          <!-- comments added by users -->
+        </div>
+
+        <div id="scrollSec">
+          <button class="btn btn-s  btn-hvr" onclick="scrollUp()">&uarr;</button>
+          <button class="btn btn-s  btn-hvr" onclick="scrollDown()">&#8595;</button>
+        </div>
       </div>
 
-      <div id="scrollSec">
-        <button class="btn btn-s  btn-hvr" onclick="scrollUp()">&uarr;</button>
-        <button class="btn btn-s  btn-hvr" onclick="scrollDown()">&#8595;</button>
-      </div>
-      
       <div id="loggedInUser" style="display: none">
         <div id="addSec">
           <textarea name="" id="userComment" placeholder=".. اضافة تعليق "></textarea>
           <input name="" id="userLink" placeholder=".. اضافة رابط "></input>
-          </div>
-          <p id="commentWarn"></p>
-          <button id="addComment" class="btn" onclick="commenting()">Add Comment</button>
+        </div>
+        <p id="commentWarn"></p>
+        <button id="addComment" class="btn" onclick="commenting()">Add Comment</button>
 
         <div id="logoutSec">
           <button id="logout" class="btn" onclick="logout()">Logout</button>
@@ -274,7 +295,7 @@
 
   <!-- SCRIPT -->
   <script>
-      var comment=document.getElementById("userComment");
+    var comment = document.getElementById("userComment");
     //Special code for each user array
     // first number in the codes array is the admin code
     var codes = [1, 2, 3];
@@ -325,20 +346,20 @@
       // navigator.clipboard.writeText(websiteURL).then(function () {
       // });
       var dummy = document.createElement('input'),
-    text = window.location.href;
+        text = window.location.href;
 
-document.body.appendChild(dummy);
-dummy.value = text;
-dummy.select();
-document.execCommand('copy');
-document.body.removeChild(dummy);
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
     }
     var flag = true;
     var newLength = 0;
     (function () {
       if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !/CriOS/i.test(navigator.userAgent)) {
         document.getElementById("main").innerHTML = `<p>يفضل استخدام مستعرض كروم ليعمل بشكل صحيح</p><p>Preferably use Google Chrome to work well</p><button class="btn btnSpecial" onClick="openAppStore()">Download Google Chrome</button><button class="btn btnSpecial" onClick="copyToClipboard()">Copy website link</button>`;
-     }
+      }
       else {
         request.open('GET', apiURL, true)
         request.onload = function () {
@@ -427,7 +448,7 @@ document.body.removeChild(dummy);
           if (code == codes[0]) {
             document.getElementById("deleteSec").innerHTML =
               `
-                <button onclick="deleteComment()">Delete Comments</button>
+                <button onclick="deleteComment()" class="btn btnSpecial clear">Delete Comments</button>
                 <input type="text" id="delete" placeholder="user code">
               `;
           }
@@ -490,13 +511,13 @@ document.body.removeChild(dummy);
       scrollDown();
     }
 
-    comment.addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      if(comment.value!=''){
-        commenting();
+    comment.addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        if (comment.value != '') {
+          commenting();
+        }
       }
-    }
-});
+    });
     function displayComments() {
       var com = "";
       if (commentsLenght == 0) {
@@ -526,8 +547,6 @@ document.body.removeChild(dummy);
         document.getElementById("commentSec").innerHTML = com;
       }
     }
-
-
     function searchComment() {
       var search = document.getElementById("searchInp").value;
       var temp = "";
@@ -589,5 +608,4 @@ document.body.removeChild(dummy);
   </script>
   <!-- END SCRIPT -->
 </body>
-
 </html>

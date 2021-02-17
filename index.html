@@ -9,6 +9,32 @@
   <!-- CSS -->
   <style>
     body {
+      scrollbar-width: thin;
+      /* "auto" or "thin" */
+      scrollbar-color: #3c5d8d rgb(239, 240, 250);
+      /* scroll thumb and track */
+    }
+
+    body::-webkit-scrollbar {
+      width: 12px;
+      /* width of the entire scrollbar */
+    }
+
+    body::-webkit-scrollbar-track {
+      background: white;
+      /* color of the tracking area */
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #3c5d8d;
+      /* color of the scroll thumb */
+      border-radius: 20px;
+      /* roundness of the scroll thumb */
+      border: 3px solid white;
+      /* creates padding around scroll thumb */
+    }
+
+    body {
       text-align: right;
     }
 
@@ -232,6 +258,14 @@
       bottom: 10px;
       left: 10px;
     }
+
+    #logout{
+      background-color: rgb(182, 75, 75);
+    }
+    #logout:hover{
+      background-color: rgb(187, 94, 94);
+    }
+
   </style>
   <!-- CSS -->
 </head>
@@ -260,7 +294,7 @@
       <div id="search">
         <button class="btn clear btn-hvr" onclick="clearSearch()">Clear</button>
         <button class="btn btn-hvr" onclick="searchComment()">Search</button>
-        <input type="text" name="" id="searchInp" placeholder="search.." />
+        <input type="text" name="" id="searchInp" placeholder="Search.." />
       </div>
       <div id="deleteSec">
         <!-- delete comments by user code -->
@@ -331,12 +365,15 @@
     function scrollUp() {
       var elem = document.getElementById('commentSec');
       elem.scrollTop = 0;
+      
     }
 
     function scrollDown() {
       var elem = document.getElementById('commentSec');
       elem.scrollTop = elem.scrollHeight;
+      
     }
+
     function openAppStore() {
       window.location.href = 'http://itunes.apple.com/lb/app/google-chrome/id535886823';
     }
@@ -449,7 +486,7 @@
             document.getElementById("deleteSec").innerHTML =
               `
                 <button onclick="deleteComment()" class="btn btnSpecial clear">Delete Comments</button>
-                <input type="text" id="delete" placeholder="user code">
+                <input type="text" id="delete" placeholder="User Code">
               `;
           }
         } else {
@@ -547,6 +584,8 @@
         document.getElementById("commentSec").innerHTML = com;
       }
     }
+
+
     function searchComment() {
       var search = document.getElementById("searchInp").value;
       var temp = "";
@@ -608,4 +647,5 @@
   </script>
   <!-- END SCRIPT -->
 </body>
+
 </html>

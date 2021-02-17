@@ -10,7 +10,11 @@
     body {
       text-align: right;
     }
-
+    .d-flex{
+      display: flex;
+      justify-content:flex-end !important;
+      align-items: center;
+    }
     .commentsContainer {
       /*Change all comments container hight*/
       height: 300px;
@@ -19,12 +23,16 @@
       margin: 10px 0px 10px 0px;
       border-radius: 5px;
     }
-
+    textarea,#userLink{
+      text-align: right;
+      border: 1px #ccc solid;
+      border-radius: 5px;
+    }
     /*Change single comment container width and height*/
     #userComment {
-      width: 100%;
+      width: 60%;
       height: 70px;
-      margin: 5px 0px 10px 0px;
+      margin: 5px 0px 10px 10px;
     }
 
     .comment {
@@ -35,6 +43,8 @@
       overflow-y: auto;
       word-break: break-all;
       border-radius: 5px;
+      background-color: rgb(252, 255, 254);
+      /* background-color: rgb(237, 243, 242); */
     }
     .comment p{
       color: gray;
@@ -108,6 +118,7 @@
     #userLink {
       display: block !important;
       margin-bottom: 10px;
+      height: 35px;
       margin-left: auto;
     }
     a{
@@ -116,7 +127,12 @@
     .btnSpecial {
       width: 200px !important;
     }
-
+.signin{
+  background-color: rgb(101, 216, 101) !important;
+}
+.clear{
+  background-color: rgb(182, 75, 75) !important;
+}
     #signfirst {
       font-weight: bold;
       color: rgb(48, 48, 82);
@@ -201,7 +217,7 @@
 </head>
 
 <body>
-  <div id="signfirst">To comment sign in first</div>
+  <div id="signfirst">To Comment Sign In First</div>
   <section id="main">
     <!-- Sign in form -->
     <section id="form">
@@ -210,11 +226,11 @@
         <br />
         <input type="password" name="code" id="code" placeholder="Code" />
         <br />
-        <button class="btn btn-hvr" onclick="check()"> <span>Sign In</span></button>
+        <button class="btn signin btn-hvr" onclick="check()"> <span>Sign In</span></button>
       </div>
       <p id="signWarning"></p>
       <div id="signButton">
-        <button class="btn btn-hvr" onclick="showForm()"><span>Sign In</span></button>
+        <button class="btn signin btn-hvr" onclick="showForm()"><span>Sign In</span></button>
       </div>
     </section>
     <!--زرار نسخ تجريبي-->
@@ -222,7 +238,7 @@
     <!-- Comments area -->
     <section id="comments">
       <div id="search">
-        <button class="btn btn-hvr" onclick="clearSearch()">Clear</button>
+        <button class="btn clear btn-hvr" onclick="clearSearch()">Clear</button>
         <button class="btn btn-hvr" onclick="searchComment()">Search</button>
         <input type="text" name="" id="searchInp" placeholder="search.." />
       </div>
@@ -241,15 +257,14 @@
       
       <div id="loggedInUser" style="display: none">
         <div id="addSec">
-          <textarea name="" id="userComment" placeholder="Write a comment.."></textarea>
-          <br />
-          <input name="" id="userLink" placeholder="Add Link"></input>
+          <textarea name="" id="userComment" placeholder=".. اضافة تعليق "></textarea>
+          <input name="" id="userLink" placeholder=".. اضافة رابط "></input>
+          </div>
           <p id="commentWarn"></p>
-          <button id="addComment" onclick="comment()">Add Comment</button>
-        </div>
+          <button id="addComment" class="btn" onclick="commenting()">Add Comment</button>
 
         <div id="logoutSec">
-          <button id="logout" onclick="logout()">Logout</button>
+          <button id="logout" class="btn" onclick="logout()">Logout</button>
         </div>
       </div>
 
@@ -258,7 +273,7 @@
 
   <!-- SCRIPT -->
   <script>
-
+      var comment=document.getElementById("userComment");
     //Special code for each user array
     // first number in the codes array is the admin code
     var codes = [1, 2, 3];
@@ -425,24 +440,21 @@ document.body.removeChild(dummy);
       }
     }
 
-
     //Add comment
-    function comment() {
+    function commenting() {
       var date = getTime();
       var name = document.getElementById("name").value;
       var code = document.getElementById("code").value;
-      var userComment = document.getElementById("userComment").value;
+      var userComment = comment.value;
       var userLink = document.getElementById("userLink").value;
-
       code = codeChange(code);
-
       // If comment is not empty, add comment
       var search = document.getElementById("searchInp").value;
       if (userComment != "" && search == '') {
         document.getElementById("commentSec").innerHTML +=
           `
                 <div class="comment">
-<div class="d-flex">
+<div class="">
   <div>
     <span class="name">` +
           name +
@@ -477,7 +489,13 @@ document.body.removeChild(dummy);
       scrollDown();
     }
 
-
+    comment.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+      if(comment.value!=''){
+        commenting();
+      }
+    }
+});
     function displayComments() {
       var com = "";
       if (commentsLenght == 0) {

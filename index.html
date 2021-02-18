@@ -43,7 +43,25 @@
       justify-content: flex-end !important;
       align-items: center;
     }
-
+    #topDropdown{
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+    #topSelect{
+      color: #5394f7;
+      font-weight: 700;
+      border: none !important;
+      outline: none;
+      cursor: pointer;
+      padding-left: 5px;
+      padding-right: 3px;
+      width: auto;
+      text-align: center;
+    }
+    #topSelect option:nth-child(1){
+      display: none;
+    }
     .commentsContainer {
       /*Change all comments container hight*/
       height: 300px;
@@ -108,7 +126,6 @@
         margin: auto;
         width: 85%;
       }
-
       #scrollSec {
         position: absolute;
         bottom: 15px;
@@ -132,7 +149,7 @@
       margin: 10px;
     }
 
-    @media screen and(max-width: 400px) {
+    @media screen and(max-width: 700px) {
       #main {
         margin: 10px 0 !important;
       }
@@ -141,7 +158,7 @@
     #addSec,
     #deleteSec,
     #search {
-      margin: 5px 0px 10px 0px;
+      margin: 60px 0px 10px 0px;
     }
 
     #signWarning,
@@ -261,12 +278,8 @@
       left: 10px;
     }
 
-    #logout, #close {
+     #close {
       background-color: rgb(182, 75, 75);
-    }
-
-    #logout:hover {
-      background-color: rgb(187, 94, 94);
     }
 
     .lightbox-container {
@@ -336,6 +349,7 @@
         <button class="btn btn-hvr" onclick="searchComment()">Search</button>
         <input type="text" name="" id="searchInp" placeholder="Search.." />
       </div>
+      <div id="topDropdown"></div>
       <div id="deleteSec">
         <!-- delete comments by user code -->
       </div>
@@ -358,10 +372,6 @@
         </div>
         <p id="commentWarn"></p>
         <button id="addComment" class="btn" onclick="commenting()">Add Comment</button>
-
-        <div id="logoutSec">
-          <button id="logout" class="btn" onclick="logout()">Logout</button>
-        </div>
       </div>
 
     </section>
@@ -402,7 +412,11 @@
       document.getElementById("searchInp").value = '';
       // scrollDown();
     }
-
+    function logout(option) {
+      if(option=="logout"){
+     // location.reload();
+      }
+    }
     function scrollUp() {
       var elem = document.getElementById('commentSec');
       elem.scrollTop = 0;
@@ -539,6 +553,13 @@
         if (isCode != undefined) {
           document.getElementById("form").style.display = "none";
           document.getElementById('signfirst').style.display = "none";
+          document.getElementById("topDropdown").innerHTML =
+          `<div>
+            <select name="topSelect" id="topSelect" onchange="logout(this.value);">
+              <option value=`+name+`>`+name+`</option>
+              <option value="logout" onclick="logout()">logout</option>
+            </select>
+           </div>`;
           document.getElementById("loggedInUser").style.display = "block";
           displayComments();
           scrollDown();
@@ -700,11 +721,6 @@
         String(d.getFullYear());
       return dateTime;
     }
-
-    function logout() {
-      location.reload();
-    }
-
   </script>
   <!-- END SCRIPT -->
 </body>

@@ -149,6 +149,8 @@
       color: red;
       font-weight: bold;
       font-size: 20px;
+      background-color: rgb(236, 236, 230);
+      text-align: center;
     }
 
     #signWarning {
@@ -259,33 +261,72 @@
       left: 10px;
     }
 
-    #logout{
+    #logout, #close {
       background-color: rgb(182, 75, 75);
     }
-    #logout:hover{
+
+    #logout:hover {
       background-color: rgb(187, 94, 94);
     }
 
+    .lightbox-container {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: scale(0, 0);
+      z-index: 100;
+    }
+
+    .lightbox-item {
+      width: 50%;
+      height: 550px;
+      position: relative;
+      transform: scale(0, 0);
+      transition: transform 1s;
+    }
   </style>
   <!-- CSS -->
 </head>
 
 <body>
-  <div id="signfirst">To Comment Sign In First</div>
+
+  <div id="signfirst">To Comment Sign In First
+    <div id="signButton">
+      <button id="btnn" class="btn signin btn-hvr" onclick="showForm()"><span>Sign In</span></button>
+    </div>
+  </div>
   <section id="main">
     <!-- Sign in form -->
     <section id="form">
-      <div id="formInputs" style="display: none">
-        <input type="text" name="name" id="name" placeholder="Name" />
-        <br />
-        <input type="password" name="code" id="code" placeholder="Code" />
-        <br />
-        <button class="btn signin btn-hvr" onclick="check()"> <span>Sign In</span></button>
+
+      <div class="lightbox-container">
+        <div class="lightbox-item">
+
+          <p id="signWarning"></p>
+
+          <div id="formInputs" style="display: none">
+            <input type="text" name="name" id="name" placeholder="Name" />
+            <br />
+            <input type="password" name="code" id="code" placeholder="Code" />
+            <br />
+            <button class="btn signin btn-hvr " onclick="check()"> <span>Sign In</span></button>
+          </div>
+
+          <button id="close" class="btn" onClick="showSignIn()">Close</button>
+        </div>
       </div>
-      <p id="signWarning"></p>
-      <div id="signButton">
-        <button class="btn signin btn-hvr" onclick="showForm()"><span>Sign In</span></button>
-      </div>
+
+      <!-- <div id="signButton">
+        <button id="btnn" class="btn signin btn-hvr" onclick="showForm()"><span>Sign In</span></button>
+      </div> -->
+
     </section>
     <!--زرار نسخ تجريبي-->
     <!-- <button onClick="copyToClipboard()">نسخ تجريبي رابط الموقع</button> -->
@@ -329,6 +370,7 @@
 
   <!-- SCRIPT -->
   <script>
+
     var comment = document.getElementById("userComment");
     //Special code for each user array
     // first number in the codes array is the admin code
@@ -365,13 +407,33 @@
     function scrollUp() {
       var elem = document.getElementById('commentSec');
       elem.scrollTop = 0;
-      
+
     }
 
     function scrollDown() {
       var elem = document.getElementById('commentSec');
       elem.scrollTop = elem.scrollHeight;
-      
+
+    }
+
+    function showSignIn() {
+      document.getElementById("signButton").style.display = "block"
+    }
+
+    var btnn = document.getElementById('btnn')
+    var lightboxContainer = document.querySelector(".lightbox-container");
+    btnn.addEventListener("click", showLightBox)
+    var close = document.getElementById("close");
+    close.addEventListener("click", hideLightBox)
+
+    function showLightBox(e) {
+      lightboxContainer.style.transform = "scale(1,1)";
+      lightboxContainer.firstElementChild.style.transform = "scale(1,1)";
+    }
+
+    function hideLightBox() {
+      lightboxContainer.style.transform = "scale(0,0)";
+      lightboxContainer.firstElementChild.style.transform = "scale(0,0)";
     }
 
     function openAppStore() {
@@ -491,11 +553,11 @@
           }
         } else {
           document.getElementById("signWarning").style.display = "block";
-          document.getElementById("signWarning").innerHTML = "try another code";
+          document.getElementById("signWarning").innerHTML = "Not a valid code.";
         }
       } else {
         document.getElementById("signWarning").style.display = "block";
-        document.getElementById("signWarning").innerHTML = "enter all values";
+        document.getElementById("signWarning").innerHTML = "Enter all values.";
       }
     }
 

@@ -119,46 +119,13 @@
     a {
       cursor: pointer;
     }
-
-    @media screen and (max-width: 452px) {
-      #userComment {
-        height: 35px;
-        margin: auto;
-        width: 85%;
-      }
-      #scrollSec {
-        position: absolute;
-        bottom: 15px;
-        left: 40px;
-      }
-
-      /* .comment {
-        margin: 10px;
-        padding: 0px;
-      } */
-
-      .commentsContainer {
-        /* width: 85%; */
-        margin: auto;
-        padding: 0px;
-        font-size: 15px;
-      }
-    }
-
     #main {
       margin: 10px;
     }
-
-    @media screen and(max-width: 700px) {
-      #main {
-        margin: 10px 0 !important;
-      }
-    }
-
     #addSec,
     #deleteSec,
     #search {
-      margin: 60px 0px 10px 0px;
+      margin: 10px 0px 10px 0px;
     }
 
     #signWarning,
@@ -303,6 +270,28 @@
       transform: translate(0, 0) !important;
       transition: transform 1s;
     }
+    @media screen and (max-width: 700px) {
+      #search {
+      margin: 60px 0px 10px 0px !important;
+      }
+    }
+    @media screen and (max-width: 452px) {
+      #userComment {
+        height: 35px;
+        margin: auto;
+        width: 85%;
+      }
+      #scrollSec {
+        position: absolute;
+        bottom: 15px;
+        left: 40px;
+      }
+      .commentsContainer {
+        margin: auto;
+        padding: 0px;
+        font-size: 15px;
+      }
+    }
   </style>
   <!-- CSS -->
 </head>
@@ -414,7 +403,7 @@
     }
     function logout(option) {
       if(option=="logout"){
-     // location.reload();
+     location.reload();
       }
     }
     function scrollUp() {
